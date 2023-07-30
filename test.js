@@ -35,52 +35,22 @@ let eventsArr = [
         month: 6,
         year: 2023,
         title: "Test Event",
-        time: "10:00 AM",
+        time: "10:00 - 15:00",
     },{
         day: 29,
         month: 6,
         year: 2023,
         title: "Other event",
-        time: "Whenever",
+        time: "09:00 - 13:00",
     },{
         day: 29,
         month: 6,
         year: 2023,
         title: "Second Event",
-        time: "Right Now",
+        time: "00:01 - 00:34",
     },
 ];
 
-// eventsArr = [
-//     {
-//         day: 28,
-//         month: 5,
-//         year: 2023,
-//         events: [{
-//             title: "Test Event",
-//             time: "10:00 AM",
-//         },{
-//             title: "Test Event 2",
-//             time: "11:00 AM",
-//     }]
-//     },{
-//         day: 30,
-//         month: 5,
-//         year: 2023,
-//         events: [{
-//             title: "Next Day",
-//             time: "15:00",
-//         }]
-//     },{
-//         day: 28,
-//         month: 6,
-//         year: 2023,
-//         events: [{
-//             title: "I lose",
-//             time: "Right now",
-//         }]
-//     }
-// ];
 
 loadData();
 
