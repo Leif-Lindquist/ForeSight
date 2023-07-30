@@ -35,22 +35,52 @@ let eventsArr = [
         month: 6,
         year: 2023,
         title: "Test Event",
-        time: "10:00 - 15:00",
+        time: "10:00 AM",
     },{
         day: 29,
         month: 6,
         year: 2023,
         title: "Other event",
-        time: "09:00 - 13:00",
+        time: "Whenever",
     },{
         day: 29,
         month: 6,
         year: 2023,
         title: "Second Event",
-        time: "00:01 - 00:34",
+        time: "Right Now",
     },
 ];
 
+// eventsArr = [
+//     {
+//         day: 28,
+//         month: 5,
+//         year: 2023,
+//         events: [{
+//             title: "Test Event",
+//             time: "10:00 AM",
+//         },{
+//             title: "Test Event 2",
+//             time: "11:00 AM",
+//     }]
+//     },{
+//         day: 30,
+//         month: 5,
+//         year: 2023,
+//         events: [{
+//             title: "Next Day",
+//             time: "15:00",
+//         }]
+//     },{
+//         day: 28,
+//         month: 6,
+//         year: 2023,
+//         events: [{
+//             title: "I lose",
+//             time: "Right now",
+//         }]
+//     }
+// ];
 
 loadData();
 
@@ -264,7 +294,7 @@ eventName.addEventListener("input", () => {
 
 //Limits Event Time From to only numbers. Formats input and deleting
 eventTimeFrom.addEventListener("input", (inputDate) => {
-    eventTimeFrom.value = eventTimeFrom.value.replace(/[^0-9]/g, "");
+    eventTimeFrom.value = eventTimeFrom.value.replace(/[^0-9]:/g, "");
     if(eventTimeFrom.value.length === 2) {
         eventTimeFrom.value += ":";
     }
@@ -280,6 +310,7 @@ eventTimeFrom.addEventListener("input", (inputDate) => {
 
 //Limits Event Time To to only numbers. Formats input and deleting
 eventTimeTo.addEventListener("input", (inputDate) => {
+    eventTimeFrom.value = eventTimeFrom.value.replace(/[^0-9]:/g, "");
     if(eventTimeTo.value.length === 2) {
         eventTimeTo.value += ":";
     }
