@@ -1,6 +1,5 @@
 let activeDay = null;
 
-
 const months = ["January", "February", "March", "April", "May", "June",
  "July", "August", "September", "October", "November", "December"];
 
@@ -29,27 +28,7 @@ let day = today.getDate();
 let month = today.getMonth();
 let year = today.getFullYear();
 
-let eventsArr = [
-    {
-        day: 17,
-        month: 6,
-        year: 2023,
-        title: "Test Event",
-        time: "10:00 AM",
-    },{
-        day: 29,
-        month: 6,
-        year: 2023,
-        title: "Other event",
-        time: "Whenever",
-    },{
-        day: 29,
-        month: 6,
-        year: 2023,
-        title: "Second Event",
-        time: "Right Now",
-    },
-];
+let eventsArr = [];
 
 loadData();
 
