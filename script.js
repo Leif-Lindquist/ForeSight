@@ -1,5 +1,6 @@
 let activeDay = null;
 
+
 const months = ["January", "February", "March", "April", "May", "June",
  "July", "August", "September", "October", "November", "December"];
 
@@ -28,7 +29,7 @@ let day = today.getDate();
 let month = today.getMonth();
 let year = today.getFullYear();
 
-let eventsArr = [];
+let eventsArr =[];
 
 loadData();
 
@@ -303,11 +304,26 @@ submitEventButton.addEventListener("click", () => {
     const eTitle = eventName.value;
     const eFrom = eventTimeFrom.value;
     const eTo = eventTimeTo.value;
+
+    //The following checks ensure the input boxes were formatted correctly.
     if(eTitle === "" || eFrom === "" || eTo === "") {
         alert("Fill all required fields");
         return;
     }
 
+    //Dont submit if starting time is after finish time
+    if(eFrom > eTo) {
+        alert("Invalid Time. Ensure time is in 24 hour format.");
+        return;
+    }
+
+    //Check to ensure times do not exceed 24 hour for the hour value and 59 minutes for the minute value. If they do, dont submit.
+    if (eventTimeChecker(eTo) === false || eventTimeChecker(eFrom) === false) {
+        alert("Invalid Time. Ensure hour value does not exceed 23 and minute value does not exceed 59.");
+        return;
+    }
+
+    //If everything checks out, submit to event array.
     eventsArr.push({
         day: activeDay,
         month: month,
@@ -315,9 +331,29 @@ submitEventButton.addEventListener("click", () => {
         title: eTitle,
         time: eFrom + " - " + eTo,
     });
+
     renderCalendar();
     displayEvents();
 })
+
+//Checks to ensure the times submitted when adding events do not exceeds valid values for 24 hour format.
+function eventTimeChecker(timeInput) {
+    let tempSliceHour = timeInput.slice(0,2);
+    let tempSliceMin = timeInput.slice(3,5);
+
+    console.log(tempSliceHour);
+    console.log(tempSliceMin);
+
+    if (tempSliceHour > 23 || tempSliceHour < 0) {
+        return false;
+    }
+    else if (tempSliceMin > 59 || tempSliceMin < 0) {
+        return false;
+    }
+    else {
+        return true;
+    }
+}
 
 //Allows for deletion of events from eventsArr
 eventsContainer.addEventListener("click", (targetEvent) =>{
