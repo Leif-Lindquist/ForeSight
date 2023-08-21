@@ -1,6 +1,5 @@
 let activeDay = null;
 
-
 const months = ["January", "February", "March", "April", "May", "June",
  "July", "August", "September", "October", "November", "December"];
 
@@ -340,9 +339,6 @@ submitEventButton.addEventListener("click", () => {
 function eventTimeChecker(timeInput) {
     let tempSliceHour = timeInput.slice(0,2);
     let tempSliceMin = timeInput.slice(3,5);
-
-    console.log(tempSliceHour);
-    console.log(tempSliceMin);
 
     if (tempSliceHour > 23 || tempSliceHour < 0) {
         return false;
