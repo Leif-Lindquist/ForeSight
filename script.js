@@ -1,5 +1,5 @@
 let activeDay = null;
-//let eventsArr = localStorage.getItem('eventsArr') ? JSON.parse(localStorage.getItem('eventsArr')) : [];
+
 
 const months = ["January", "February", "March", "April", "May", "June",
  "July", "August", "September", "October", "November", "December"];
@@ -50,37 +50,6 @@ let eventsArr = [
         time: "Right Now",
     },
 ];
-
-// eventsArr = [
-//     {
-//         day: 28,
-//         month: 5,
-//         year: 2023,
-//         events: [{
-//             title: "Test Event",
-//             time: "10:00 AM",
-//         },{
-//             title: "Test Event 2",
-//             time: "11:00 AM",
-//     }]
-//     },{
-//         day: 30,
-//         month: 5,
-//         year: 2023,
-//         events: [{
-//             title: "Next Day",
-//             time: "15:00",
-//         }]
-//     },{
-//         day: 28,
-//         month: 6,
-//         year: 2023,
-//         events: [{
-//             title: "I lose",
-//             time: "Right now",
-//         }]
-//     }
-// ];
 
 loadData();
 
@@ -324,6 +293,7 @@ eventTimeTo.addEventListener("input", (inputDate) => {
     }
 });
 
+//Injects HTML code to display events in the event sidebar
 function displayEvents() {
     let events = "";
     if(eventsArr.some(selectDate => selectDate.day === activeDay && selectDate.month === month && selectDate.year === year)) {
@@ -349,6 +319,7 @@ function displayEvents() {
     saveData();
 }
 
+//Handles submitting new events
 submitEventButton.addEventListener("click", () => {
     const eTitle = eventName.value;
     const eFrom = eventTimeFrom.value;
@@ -369,6 +340,7 @@ submitEventButton.addEventListener("click", () => {
     displayEvents();
 })
 
+//Allows for deletion of events from eventsArr
 eventsContainer.addEventListener("click", (targetEvent) =>{
     if(targetEvent.target.classList.contains("event-title") || targetEvent.target.classList.contains("event-time") || targetEvent.target.classList.contains("event")) {
         if(confirm("Delete target event?")) {
@@ -385,12 +357,16 @@ eventsContainer.addEventListener("click", (targetEvent) =>{
     renderCalendar();
 })
 
+//Saves current status of eventsArr to local storage
 function saveData() {
     localStorage.setItem("events", JSON.stringify(eventsArr));
+    console.log(eventsArr);
 }
 
+//Loads JSON file from local storage
 function loadData() {
     if(localStorage.getItem("events") === null) {
+        let eventsArr = localStorage.getItem('eventsArr') ? JSON.parse(localStorage.getItem('eventsArr')) : [];
         return;
     }
     eventsArr.push(...JSON.parse(localStorage.getItem("events")));
